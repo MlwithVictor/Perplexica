@@ -1,0 +1,7 @@
+[llm]
+provider = "ollama"
+api = "https://ollamapi.e4eweb.space/api/generate"
+header = "Basic ZTRlYWk6MzRlQWlAMjAyNQ=="
+
+[server]
+port = 3000
