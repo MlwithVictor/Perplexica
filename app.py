@@ -10,6 +10,7 @@ load_dotenv()
 OLLAMA_URL = os.getenv("OLLAMA_BASE_URL")
 OLLAMA_AUTH = os.getenv("OLLAMA_AUTH")
 MODEL = os.getenv("MODEL")
+
 # List of SearXNG endpoints for parallel querying
 SEARXNG_API_URLS = [
     "https://searx.be/search?format=json",
@@ -60,8 +61,9 @@ async def search_endpoint(request: Request):
         return JSONResponse(status_code=502, content={"error": "All SearXNG endpoints failed."})
 
     # STEP 2: LLM Processing via Ollama
-   llm_prompt = f"""Web snippets: {snippets}
+    llm_prompt = f"""Web snippets: {snippets}
 User query: {prompt}"""
+
     try:
         async with httpx.AsyncClient(timeout=30) as client:
             llm_resp = await client.post(
