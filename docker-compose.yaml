@@ -1,14 +1,27 @@
-version: "3.9"
+version: "3.8"
+
 services:
-  perplexica:
+  web:
     build: .
+    container_name: fastapi-search
     ports:
-      - "3000:3000"
-    environment:
-      # Ollama model endpoint + auth
-      - OLLAMA_BASE_URL=https://ollamapi.e4eweb.space/api/generate
-      - OLLAMA_AUTH=Basic ZTRlYWk6MzRlQWlAMjAyNQ==
-      - MODEL=gemma:3-12b
-      # Public SearXNG API endpoint (JSON format)
-      - SEARXNG_API_URL=https://searx.be/search?format=json
-    restart: unless-stopped
+      - "8000:8000"
+    env_file:
+      - ./app/.env
+    volumes:
+      - ./app:/app
+    restart: always
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: always
+
+volumes:
+  ollama_data:
