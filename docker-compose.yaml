@@ -1,13 +1,9 @@
 version: "3.9"
-
 services:
   perplexica:
     build: .
     ports:
       - "3000:3000"
     environment:
-      - SEARXNG_API_URL=https://searx.be
-      - DATA_DIR=/home/perplexica
-    volumes:
-      - ./config.toml:/home/perplexica/config.toml
+      # Ollama model endpoint + auth\      - OLLAMA_BASE_URL=https://ollamapi.e4eweb.space/api/generate\      - OLLAMA_AUTH=Basic ZTRlYWk6MzRlQWlAMjAyNQ==\      - MODEL=gemma:3-12b\      # Public SearXNG for web search\      - SEARXNG_API_URL=https://searx.be
     restart: unless-stopped
