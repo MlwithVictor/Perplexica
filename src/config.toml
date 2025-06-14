@@ -1,7 +1,7 @@
-[llm]
-provider = "ollama"
-api = "https://ollamapi.e4eweb.space/api/generate"
-header = "Basic ZTRlYWk6MzRlQWlAMjAyNQ=="
+[ollama]
+base_url = "https://ollamapi.e4eweb.space/api"
+auth_header = "Basic ZTRlYWk6MzRlQWlAMjAyNQ=="
+model = "gemma3:12b"
 
 [server]
 port = 3000
