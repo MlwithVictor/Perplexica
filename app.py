@@ -60,8 +60,8 @@ async def search_endpoint(request: Request):
         return JSONResponse(status_code=502, content={"error": "All SearXNG endpoints failed."})
 
     # STEP 2: LLM Processing via Ollama
-    llm_prompt = f"Web snippets: {snippets}
-User query: {prompt}"
+   llm_prompt = f"""Web snippets: {snippets}
+User query: {prompt}"""
     try:
         async with httpx.AsyncClient(timeout=30) as client:
             llm_resp = await client.post(
