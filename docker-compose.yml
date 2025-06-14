@@ -4,3 +4,8 @@ services:
     build: .
     ports:
       - "3000:3000"
+    environment:
+      - SEARXNG_API_URL=https://searx.be/search
+    volumes:
+      - ./config.toml:/home/perplexica/config.toml
+    restart: unless-stopped
