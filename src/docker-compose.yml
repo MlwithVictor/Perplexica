@@ -1,6 +1,13 @@
-version: "3.8"
+version: "3.9"
+
 services:
   perplexica:
     build: .
     ports:
       - "3000:3000"
+    environment:
+      - SEARXNG_API_URL=https://searx.be
+      - DATA_DIR=/home/perplexica
+    volumes:
+      - ./config.toml:/home/perplexica/config.toml
+    restart: unless-stopped
