@@ -1,18 +1,10 @@
-# Use a slim Python image
 FROM python:3.10-slim
 
-# Set working directory
 WORKDIR /app
 
-# Copy dependency list and install
-COPY requirements.txt ./
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY . .
+COPY ./app .
 
-# Expose port
-EXPOSE 3000
-
-# Start the app using Uvicorn
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "3000"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
