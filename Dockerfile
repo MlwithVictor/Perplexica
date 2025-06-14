@@ -1,16 +1,18 @@
+# Use a slim Python image
 FROM python:3.10-slim
 
-# Set working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy everything from the local /src to container /app/src
-COPY ./src /app/src
+# Copy dependency list and install
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install required packages
-RUN pip install fastapi uvicorn httpx toml
+# Copy application code
+COPY . .
 
-# Expose the API port
+# Expose port
 EXPOSE 3000
 
-# Run the FastAPI app from src/app.py
-CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "3000"]
+# Start the app
+tCMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "3000"]
